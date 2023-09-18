@@ -37,6 +37,11 @@ function operate(a, b, operator) {
     }
 };
 function updateDisplay(id) {
-    console.log(id);
+    if (id === "clear") {
+        document.getElementById("disp").textContent = "";
+    } else {
+        document.getElementById("disp").textContent = id;
+    }        
+
 }
 

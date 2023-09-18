@@ -21,13 +21,21 @@ header, footer {
     border: 1px solid orange;
     border-radius: 12px;
 }
-button {
+div > button {
     margin: 8px;
     padding: 8px;
     border: 1px solid orange;
     border-radius: 12px;
     font-size: 2rem;
     width: 48px;
+    height: 48px;
+}
+button {
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid orange;
+    border-radius: 12px;
+    font-size: 2rem;
     height: 48px;
 }
 main {
@@ -46,5 +54,6 @@ main {
     border-radius: 12px;
     background-color: lightgray;
     min-width: 256px;
+    min-height: 38px;
     font-size: 2rem;
 }

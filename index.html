@@ -14,7 +14,7 @@
     <header>This is Calculon</header>
  
     <main>
-        <div class="display">110 + 16</div>
+        <div class="display" id="disp">110 + 16</div>
         <div class="buttons">
             <div class="digits">
                 <button id="1" onclick="updateDisplay(this.id)">1</button>
@@ -36,7 +36,8 @@
                 <button id="=" onclick="updateDisplay(this.id)">=</button>       
             </div>    
         </div>    
- 
+        <button id="clear" onclick="updateDisplay(this.id)">Clear</button>
+        
     </main>
 
     <footer>Rejoice, puny earthling!</footer>
