@@ -1,9 +1,9 @@
 "use strict";
 
-let firstOperand;
-let secondOperand;
-let Operator;
-let displayValue;
+let firstOperand = "";
+let secondOperand = "";
+let operator = "";
+let result = "";
 
 function add(a, b) {
     return a + b;
@@ -32,16 +32,34 @@ function operate(a, b, operator) {
             return divide(a, b);
             break;
         default:
-            return "whoopsie daisy";
+            return "3RR0R";
             break;
     }
 };
-function updateDisplay(id) {
+function updateVars(id) {
     if (id === "clear") {
-        document.getElementById("disp").textContent = "";
-    } else {
-        document.getElementById("disp").textContent = id;
-    }        
+        firstOperand = "";
+        operator = "";
+        secondOperand = "";
+        result = "";
+    }
+    if (id === "=") {
+        result = operate(firstOperand, secondOperand, operator);
+    }
 
+    if (operator === "" && id != "+" && id != "-" && id != "*" && id != "/" && id != "=") {
+        firstOperand += id;
+    } else if (id === "+" || id === "-" || id === "*" || id === "/") {
+        operator = id;
+    }
+    updateDisplay();
+}
+
+function updateDisplay() {
+    if (result === "") {
+        document.getElementById("disp").textContent = firstOperand + operator + secondOperand;
+    } else {
+        document.getElementById("disp"). textContent = result;
+    }
 }
 
