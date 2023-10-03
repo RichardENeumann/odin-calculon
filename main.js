@@ -6,7 +6,7 @@ let operator = "";
 let result = "";
 
 function add(a, b) {
-    return a + b;
+    return +a + +b;
 };
 function subtract(a, b) {
     return a - b;
@@ -18,40 +18,46 @@ function divide(a, b) {
     return a / b;
 };
 function operate(a, b, operator) {
-    switch(operator) {
-        case "+":
-            return add(a, b);
-            break;
-        case "-":
-            return subtract(a, b);
-            break;
-        case "*":
-            return multiply(a, b);
-            break;
-        case "/":
-            return divide(a, b);
-            break;
-        default:
-            return "3RR0R";
-            break;
+    if (a.match(/\d/) && b.match(/\d/) && operator.match(/[\/\*\-\+]/)) {
+        switch(operator) {
+            case "+":
+                return add(a, b);
+                break;
+            case "-":
+                return subtract(a, b);
+                break;
+            case "*":
+                return multiply(a, b);
+                break;
+            case "/":
+                return divide(a, b);
+                break;
+            default:
+                return "3RR0R";
+                break;
+        }
+    } else {
+        return "Error"
     }
+    
 };
 function updateVars(id) {
+
     if (id === "clear") {
         firstOperand = "";
         operator = "";
         secondOperand = "";
         result = "";
-    }
-    if (id === "=") {
+    } else if (id === "=") {
         result = operate(firstOperand, secondOperand, operator);
-    }
-
-    if (operator === "" && id != "+" && id != "-" && id != "*" && id != "/" && id != "=") {
-        firstOperand += id;
-    } else if (id === "+" || id === "-" || id === "*" || id === "/") {
+    } else if (id.match(/[\/\*\+\-]/)) {
         operator = id;
+    } else if (secondOperand === "" && operator === "" && id.match(/\d/)) {
+        firstOperand += id;
+    } else if (firstOperand !== "" && operator !== "" && id.match(/\d/)) {
+        secondOperand += id;
     }
+   
     updateDisplay();
 }
 
