@@ -45,7 +45,19 @@ function updateVars(id) {
     } else if (id.match(/\d/) && operator === "") {
         firstOperand += id;
     } else if (id.match(/[\/\*\+\-]/)) {
-        operator = id;
+        if (firstOperand !== "" && operator !== "" && secondOperand !== "") {
+            result = operate(firstOperand, secondOperand, operator);
+            if (result % 1 !== 0) {
+                result = result.toFixed(2);
+            }
+            firstOperand = result;
+            operator = id;
+            secondOperand = "";
+            updateDisplay();
+            result = "";
+        } else {
+            operator = id;
+        } 
     } else if (id.match(/\d/) && operator !== "") {
         secondOperand += id;
     } else if (id === "=") {
