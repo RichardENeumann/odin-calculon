@@ -15,7 +15,8 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    if (+a === 0 || +b === 0) {
+    if (+b === 0) {
+        alert("Don't break the universe!");
         return 0;
     } else {
         return a / b;
