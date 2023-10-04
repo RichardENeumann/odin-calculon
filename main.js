@@ -15,10 +15,10 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    if (b === 0) {
-        return "Very funny!";
-    } else  {
-    return a / b;
+    if (+a === 0 || +b === 0) {
+        return 0;
+    } else {
+        return a / b;
     }
 }
 function operate(a, b, operator) {
