@@ -18,7 +18,6 @@ function divide(a, b) {
     return a / b;
 };
 function operate(a, b, operator) {
-    if (a.match(/\d/) && b.match(/\d/) && operator.match(/[\/\*\-\+]/)) {
         switch(operator) {
             case "+":
                 return add(a, b);
@@ -36,34 +35,35 @@ function operate(a, b, operator) {
                 return "3RR0R";
                 break;
         }
-    } else {
-        return "Error"
-    }
-    
 };
 function updateVars(id) {
-
     if (id === "clear") {
         firstOperand = "";
         operator = "";
         secondOperand = "";
         result = "";
-    } else if (id === "=") {
-        result = operate(firstOperand, secondOperand, operator);
+    } else if (id.match(/\d/) && operator === "") {
+        firstOperand += id;
     } else if (id.match(/[\/\*\+\-]/)) {
         operator = id;
-    } else if (secondOperand === "" && operator === "" && id.match(/\d/)) {
-        firstOperand += id;
-    } else if (firstOperand !== "" && operator !== "" && id.match(/\d/)) {
+    } else if (id.match(/\d/) && operator !== "") {
         secondOperand += id;
-    }
-   
+    } else if (id === "=") {
+        result = operate(firstOperand, secondOperand, operator);
+        if (result % 1 !== 0) {
+            result = result.toFixed(2);
+        }
+        firstOperand = result;
+        operator = "";
+        secondOperand = "";
+    } 
     updateDisplay();
+    result = "";
 }
 
 function updateDisplay() {
     if (result === "") {
-        document.getElementById("disp").textContent = firstOperand + operator + secondOperand;
+        document.getElementById("disp").textContent = firstOperand + " " + operator + " " + secondOperand;
     } else {
         document.getElementById("disp"). textContent = result;
     }
